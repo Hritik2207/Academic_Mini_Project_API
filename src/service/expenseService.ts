@@ -20,7 +20,7 @@ export class GettService {
         const newExpense = new Expense(
             expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 1,
             createExpenseDto.title,
-            createExpenseDto.amount
+            Number(createExpenseDto.amount)
         );
         expenses.push(newExpense);
         return newExpense;
@@ -30,7 +30,7 @@ export class GettService {
         const expense = expenses.find(e => e.id === id);
         if (expense) {
             expense.title = updateExpenseDto.title;
-            expense.amount = updateExpenseDto.amount;
+            expense.amount = Number(updateExpenseDto.amount);
             return expense;
         } else {
             throw new Error('Expense not found');
